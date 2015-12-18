@@ -1,0 +1,11 @@
+.project
+.settings
+.classpath
+.springBeans
+*/target/**
+*.class
+*.jar
+*.rar
+*.war
+*.ear
+hs_err_pid*
