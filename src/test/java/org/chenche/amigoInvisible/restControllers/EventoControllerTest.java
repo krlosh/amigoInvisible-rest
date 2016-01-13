@@ -4,7 +4,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.chenche.amigoInvisible.domain.UserData;
+import java.util.Date;
+
+import org.chenche.amigoInvisible.domain.Evento;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,32 +20,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/spring/webcontext/DispatchServlet-context.xml")
 @WebAppConfiguration
-public class SesionControllerTest extends RestControllerTest{
-
+public class EventoControllerTest extends RestControllerTest{
 
 	@Before
-	public void setup() {
+	public void setup(){
 		super.setup();
 	}
 
 	@Test
-	public void testLogin() throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		UserData value= new UserData();
-		value.setName("nombre");
-		value.setPassword("nombre");
-		String json = mapper.writeValueAsString(value);//"{\"name\":\"nombre\",\"password\":\"nombre\"}";
-		this.mockMvc.perform(
-			post("/sesion")
-				.session(session)
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(json)
-			)
+	public void testEliminarEvento() throws Exception {
+		this.mockMvc.perform(delete("/grupos/eventos/1")
+				.param("grupoId","2"))
 			.andExpect(status().is(200));
 	}
-	
+
 	@Test
-	public void testLogout() throws Exception {
-		this.mockMvc.perform(delete("/sesion?token=1")).andExpect(status().is(200));
+	public void testAnadirEvento()throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		Evento e = new Evento();
+		e.setFecha(new Date());
+		e.setNombre("nombre");
+		String json = mapper.writeValueAsString(e);
+		this.mockMvc.perform(post("/grupos/eventos/1")
+				//.session(session)
+				.param("grupoId","2")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(json)
+				)
+		.andExpect(status().is(200));
 	}
+
 }

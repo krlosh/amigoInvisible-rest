@@ -2,9 +2,15 @@ package org.chenche.amigoInvisible.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Evento {
+	
+	private long id;
+	
 	private String nombre;
 	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date fecha;
 
 	public String getNombre() {
@@ -21,6 +27,14 @@ public class Evento {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 }

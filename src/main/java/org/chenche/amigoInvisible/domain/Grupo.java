@@ -1,5 +1,6 @@
 package org.chenche.amigoInvisible.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Grupo {
@@ -32,6 +33,11 @@ public class Grupo {
 		 		]
 				}
 	 */
+	
+	public Grupo(){
+		this.eventos=new ArrayList<Evento>();
+		this.integrantes= new ArrayList<Integrante>();
+	}
 	
 	private long id;
 	
