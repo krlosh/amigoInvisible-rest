@@ -10,7 +10,7 @@ public class Evento {
 	
 	private String nombre;
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
 	private Date fecha;
 
 	public String getNombre() {
