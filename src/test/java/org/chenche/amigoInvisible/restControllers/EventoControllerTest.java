@@ -29,8 +29,7 @@ public class EventoControllerTest extends RestControllerTest{
 
 	@Test
 	public void testEliminarEvento() throws Exception {
-		this.mockMvc.perform(delete("/grupos/eventos/1")
-				.param("grupoId","2"))
+		this.mockMvc.perform(delete("/grupos/2/eventos/1"))
 			.andExpect(status().is(200));
 	}
 
@@ -41,9 +40,8 @@ public class EventoControllerTest extends RestControllerTest{
 		e.setFecha(new Date());
 		e.setNombre("nombre");
 		String json = mapper.writeValueAsString(e);
-		this.mockMvc.perform(post("/grupos/eventos/1")
+		this.mockMvc.perform(post("/grupos/2/eventos")
 				//.session(session)
-				.param("grupoId","2")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json)
 				)

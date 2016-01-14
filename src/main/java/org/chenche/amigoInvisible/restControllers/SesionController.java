@@ -6,12 +6,14 @@ import org.chenche.amigoInvisible.domain.Authorization;
 import org.chenche.amigoInvisible.domain.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @RequestMapping("/sesion")
@@ -27,6 +29,7 @@ public class SesionController {
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)
+	@ResponseStatus(value = HttpStatus.OK)
 	public @ResponseBody void logout(@RequestParam(value="token") String token){ //ver tb RequestHeader
 		//TODO Implementar
 		logger.info("{} logged Out ", token);
