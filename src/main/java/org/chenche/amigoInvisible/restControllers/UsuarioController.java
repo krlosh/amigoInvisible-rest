@@ -70,4 +70,9 @@ public class UsuarioController {
 		
 		logger.info("Usuario {} creado ",amigo.getApodo());
 	}
+	@RequestMapping(value = "/{perfilId}",method = RequestMethod.POST)
+	public @ResponseBody Amigo guardarPerfil(@PathVariable(value = "perfilId") String perfilId,@RequestBody RegistroData registro){
+		//TODO Evaluar y guardar
+		return registro.getAmigo();
+	}
 }
