@@ -8,11 +8,17 @@ import org.chenche.amigoInvisible.domain.Amigo;
 import org.chenche.amigoInvisible.domain.Evento;
 import org.chenche.amigoInvisible.domain.Grupo;
 import org.chenche.amigoInvisible.domain.Integrante;
+import org.chenche.amigoInvisible.domain.RegistroData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * cargarPerfil 	-> GET /usuario/{perfilId} (UsuarioController)
@@ -25,6 +31,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
+	private static Logger logger = LoggerFactory.getLogger(UsuarioController.class);
+	
 	@RequestMapping(value = "/{perfilId}",method = RequestMethod.GET)
 	public @ResponseBody Amigo cargarPerfil(@PathVariable(value = "perfilId") String perfilId){
 		Amigo amigo = new Amigo();
@@ -52,5 +60,14 @@ public class UsuarioController {
 		grupos.add(g);
 		amigo.setGrupos(grupos);
 		return amigo;
+	}
+	
+	@RequestMapping(method=RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void crearPerfil(@RequestBody RegistroData registro){
+		//TODO Validaciones y creación en backend
+		Amigo amigo = registro.getAmigo();
+		
+		logger.info("Usuario {} creado ",amigo.getApodo());
 	}
 }
