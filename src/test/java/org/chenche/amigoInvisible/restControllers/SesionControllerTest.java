@@ -44,6 +44,6 @@ public class SesionControllerTest extends RestControllerTest{
 	
 	@Test
 	public void testLogout() throws Exception {
-		this.mockMvc.perform(delete("/sesion?token=1")).andExpect(status().is(200));
+		this.mockMvc.perform(delete("/sesion?token=1")).andExpect(status().is(403));
 	}
 }
