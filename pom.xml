@@ -45,6 +45,9 @@
 					<enableJarClasses>false</enableJarClasses>
 					<port>8181</port>
 					<address>0.0.0.0</address>
+					<!-- <jvmFlags>
+					    <jvmFlag>-Ddatastore.backing_store=${project.basedir}\local_db.bin</jvmFlag>
+					</jvmFlags> -->
 				</configuration>
 			</plugin>
 		</plugins>
